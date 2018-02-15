@@ -1,21 +1,32 @@
 ﻿$ErrorActionPreference = 'Stop'
 
-$PackageName = 'kibana'
-$url32       = 'https://artifacts.elastic.co/downloads/kibana/kibana-5.6.4-windows-x86.zip'
-$checksum32  = '33da6553f2e97c555363b1ce08cfbfaf0e55e9640c5f9b47e575ea6e09bd5263'
+$url       = 'https://artifacts.elastic.co/downloads/kibana/kibana-6.2.1-windows-x86_64.zip'
+$checksum  = '0628e1c74e7de35f31b00082ed280a39b9680d9206b5784adab428ca88c6b856'
 
 $packageArgs = @{
-  packageName    = $packageName
-  url            = $url32
-  checksum       = $checksum32
-  checksumType   = 'sha256'
-  unzipLocation  = Split-Path $MyInvocation.MyCommand.Definition
+    packageName     = $env:ChocolateyPackageName
+    url64bit        = $url
+    checksum64      = $checksum
+    checksumType64  = 'sha256'
+    unzipLocation   = $env:ChocolateyPackageFolder
 }
 Install-ChocolateyZipPackage @packageArgs
 
-$ServiceName = 'kibana-service'
+Move-Item `
+    (Resolve-Path "$env:ChocolateyPackageFolder\kibana-*") `
+    "$env:ChocolateyPackageFolder\kibana"
 
-Write-Host "Installing service"
+# do not create shims.
+Get-ChildItem `
+    "$env:ChocolateyPackageFolder\kibana" `
+    -Include *.exe `
+    -Recurse `
+    | ForEach-Object {New-Item "$($_.FullName).ignore" -Type File -Force} `
+    | Out-Null
+
+$ServiceName = 'kibana'
+
+Write-Host "Installing the $ServiceName service..."
 
 if ($Service = Get-Service $ServiceName -ErrorAction SilentlyContinue) {
     if ($Service.Status -eq "Running") {
@@ -24,5 +35,5 @@ if ($Service = Get-Service $ServiceName -ErrorAction SilentlyContinue) {
     Start-ChocolateyProcessAsAdmin "delete $ServiceName" "sc.exe"
 }
 
-Start-ChocolateyProcessAsAdmin "install $ServiceName $(Join-Path $env:chocolateyPackageFolder "tools\kibana-$PackageVersion-windows-x86\bin\kibana.bat")" nssm
+Start-ChocolateyProcessAsAdmin "install $ServiceName $env:ChocolateyPackageFolder\kibana\bin\kibana.bat" nssm
 Start-ChocolateyProcessAsAdmin "set $ServiceName Start SERVICE_DEMAND_START" nssm

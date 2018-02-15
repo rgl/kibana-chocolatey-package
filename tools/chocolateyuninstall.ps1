@@ -1,8 +1,7 @@
-﻿$PackageName="Kibana"
-$ServiceName="kibana-service"
+﻿$ServiceName = 'kibana'
 
 if ($Service = Get-Service $ServiceName -ErrorAction SilentlyContinue) {
-    Write-Host "Removing service."
+    Write-Host "Removing the $ServiceName service..."
     if ($Service.Status -eq "Running") {
         Start-ChocolateyProcessAsAdmin "stop $ServiceName" "sc.exe"
     }

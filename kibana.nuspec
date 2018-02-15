@@ -2,21 +2,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>kibana</id>
-    <version>5.6.4</version>
+    <version>6.2.1</version>
     <title>Kibana</title>
     <authors>Elastic</authors>
-    <owners>hambone</owners>
+    <owners>rgl</owners>
     <licenseUrl>https://github.com/elastic/kibana/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://www.elastic.co/products/kibana</projectUrl>
     <iconUrl>https://static-www.elastic.co/assets/blt282ae2420e32fc38/icon-kibana-bb.svg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Kibana is an open source data visualization platform that allows you to interact with your data through stunning, powerful graphics that can be combined into custom dashboards that help you share insights from your data far and wide.  
-	
-	Kibana will be installed in %ChocolateyInstall%\lib\Kibana and add a service called "kibana-service".  
-	
-	The Kibana service is set to manually start by default. It can be set to automatically start by changing the service properties.  
-	
-	This is an automatic package.</description>
+    <description>Kibana is an open source data visualization platform that allows you to interact with your data through stunning, powerful graphics that can be combined into custom dashboards that help you share insights from your data far and wide.
+
+	Kibana will be installed in %ChocolateyInstall%\lib\Kibana and add a service called "kibana".
+
+	The Kibana service is set to manually start by default. It can be set to automatically start by changing the service properties.</description>
     <summary>Explore and Visualize Your Data</summary>
     <tags>data kibana visualization elastic admin</tags>
     <projectSourceUrl>https://github.com/elastic/kibana</projectSourceUrl>
