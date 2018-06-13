@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>kibana</id>
-    <version>6.2.1</version>
+    <version>6.2.4</version>
     <title>Kibana</title>
     <authors>Elastic</authors>
     <owners>rgl</owners>

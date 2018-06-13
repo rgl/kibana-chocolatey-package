@@ -1,7 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop'
 
-$url       = 'https://artifacts.elastic.co/downloads/kibana/kibana-6.2.1-windows-x86_64.zip'
-$checksum  = '0628e1c74e7de35f31b00082ed280a39b9680d9206b5784adab428ca88c6b856'
+$url       = 'https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-windows-x86_64.zip'
+$checksum  = 'd9fe5dcb8d4d931317d25c16ccaf2e8dbc6464eb1dd22d081c33822d2993dab4'
 
 $packageArgs = @{
     packageName     = $env:ChocolateyPackageName
