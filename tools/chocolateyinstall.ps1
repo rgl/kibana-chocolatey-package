@@ -1,13 +1,13 @@
 ﻿$ErrorActionPreference = 'Stop'
 
-$url       = 'https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-windows-x86_64.zip'
-$checksum  = 'd9fe5dcb8d4d931317d25c16ccaf2e8dbc6464eb1dd22d081c33822d2993dab4'
+$url       = 'https://artifacts.elastic.co/downloads/kibana/kibana-oss-6.3.0-windows-x86_64.zip'
+$checksum  = '675cc4d3fbeb2a1df4dca4338dfbb811a85d980ca9edb0107803afcce24b7f09a8209280764a6ca426921b20a81e5d58544b35db03b5a4b4744b77874b2ab6bf'
 
 $packageArgs = @{
     packageName     = $env:ChocolateyPackageName
     url64bit        = $url
     checksum64      = $checksum
-    checksumType64  = 'sha256'
+    checksumType64  = 'sha512'
     unzipLocation   = $env:ChocolateyPackageFolder
 }
 Install-ChocolateyZipPackage @packageArgs
